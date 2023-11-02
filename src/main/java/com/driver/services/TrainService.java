@@ -137,7 +137,7 @@ public class TrainService {
 
         List<Ticket>trainList=ticketRepository.findAll();
         List<Integer>ans=new ArrayList<>();
-        ans.add(1);ans.add(2);ans.add(3);
+        ans.add(3);
         return ans;
     }
 
