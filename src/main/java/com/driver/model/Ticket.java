@@ -27,10 +27,8 @@ public class Ticket {
     private Train train;
 
     private Station fromStation;
-
-    private int totalFare;
-
     private Station toStation;
+    private int totalFare;
 
     public Ticket(int ticketId, List<Passenger> passengersList, Train train, Station fromStation, Station toStation,int totalFare) {
         this.ticketId = ticketId;

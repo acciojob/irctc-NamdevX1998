@@ -76,6 +76,7 @@ public class TrainService {
         //if the trainId is not passing through that station
         //throw new Exception("Train is not passing from this station");
         //  in a happy case we need to find out the number of such people.
+
         Optional<Train> trainOptional=trainRepository.findById(trainId);
         if(!(trainOptional.isPresent())){
             throw new Exception("Invalid train id");
@@ -132,6 +133,7 @@ public class TrainService {
         //You can assume that the date change doesn't need to be done ie the travel will certainly happen with the same date (More details
         //in problem statement)
         //You can also assume the seconds and milli seconds value will be 0 in a LocalTime format.
+
         List<Ticket>trainList=ticketRepository.findAll();
 
 

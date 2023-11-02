@@ -42,21 +42,73 @@ public class TicketService {
         //Also in the passenger Entity change the attribute bookedTickets by using the attribute bookingPersonId.
        //And the end return the ticketId that has come from db
 
-
-        List<Integer>listOfPassengersIds=bookTicketEntryDto.getPassengerIds();
-        int BookingPersonId=bookTicketEntryDto.getBookingPersonId();
         int trainId=bookTicketEntryDto.getTrainId();
+        if(trainRepository.findById(trainId).isPresent()==false){
+            throw new Exception("Invalid Train id");
+        }
+        List<Integer>listOfPassengersIds=bookTicketEntryDto.getPassengerIds();
+        int bookingPersonId=bookTicketEntryDto.getBookingPersonId();
         String fromstation=bookTicketEntryDto.getFromStation().toString();
         String tostation=bookTicketEntryDto.getToStation().toString();
-        int seats=bookTicketEntryDto.getNoOfSeats();
-        List<Ticket>list=ticketRepository.findAll();
-        int count=0;
-        for(Ticket ticket:list){
+        int reqSeats=bookTicketEntryDto.getNoOfSeats();
+        Train train=trainRepository.findById(trainId).get();
+        List<Ticket> bookedTickets=train.getBookedTickets();
+        String route=train.getRoute();
+        String[]arr=route.split(",");
+        boolean flag1=false,flag2=false;
+        for(String str:arr){
+            if(str.equalsIgnoreCase(fromstation)){
+                flag1=true;
+            }
+            if(str.equalsIgnoreCase(tostation)){
+                flag2=true;
+            }
+        }
+        if(!(flag1 && flag2)){
+            throw new Exception("Invalid stations");
+        }
+        int availbleSeats=train.getNoOfSeats();
+        int c=0;
 
+        for(Ticket ticket:bookedTickets){
+
+        }
+        if(availbleSeats<reqSeats){
+            throw new Exception("Less tickets are available");
         }
 
 
-       return null;
 
+
+
+
+
+
+        int count=0;int i=0;
+        for(i=0;i<arr.length;i++){
+            if(arr[i].equalsIgnoreCase(fromstation)){
+                break;
+            }
+        }
+        while(!(arr[i].equalsIgnoreCase(tostation))){
+            count++;
+            i++;
+        }
+        int cost=count*reqSeats*300;
+
+        Ticket ticket=new Ticket();
+        ticket.setFromStation(bookTicketEntryDto.getFromStation());
+        ticket.setToStation(bookTicketEntryDto.getToStation());
+        ticket.setTrain(train);
+        ticket.setTotalFare(cost);
+        List<Passenger>passengerList=ticket.getPassengersList();
+        for(int j:listOfPassengersIds){
+            Passenger passenger=passengerRepository.findById(j).get();
+            passengerList.add(passenger);
+        }
+        Passenger passenger=passengerRepository.findById(bookingPersonId).get();
+        passenger.getBookedTickets().add(ticket);
+        Ticket saveTicket=ticketRepository.save(ticket);
+        return saveTicket.getTicketId();
     }
 }
