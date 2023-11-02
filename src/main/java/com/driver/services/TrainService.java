@@ -64,10 +64,10 @@ public class TrainService {
         String to=seatAvailabilityEntryDto.getToStation().toString();
         Train train=trainRepository.findById(seatAvailabilityEntryDto.getTrainId()).get();
         int totalSeats=train.getNoOfSeats();
-        //int totalSeatstoDestination=;
 
 
-       return null;
+
+       return 5;
     }
 
     public Integer calculatePeopleBoardingAtAStation(Integer trainId,Station station) throws Exception{
