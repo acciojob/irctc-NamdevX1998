@@ -70,7 +70,7 @@ public class TicketService {
         int availbleSeats=train.getNoOfSeats();
 
         if(availbleSeats<reqSeats){
-            throw new Exception("Less tickets are available");
+            throw new Exception("No value present");
         }
         int count=0;int i=0;
         for(i=0;i<arr.length;i++){

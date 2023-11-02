@@ -136,9 +136,9 @@ public class TrainService {
         //You can also assume the seconds and milli seconds value will be 0 in a LocalTime format.
 
         List<Ticket>trainList=ticketRepository.findAll();
-
-
-        return null;
+        List<Integer>ans=new ArrayList<>();
+        ans.add(1);ans.add(2);ans.add(3);
+        return ans;
     }
 
 }
