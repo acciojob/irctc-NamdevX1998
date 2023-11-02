@@ -42,6 +42,20 @@ public class TicketService {
         //Also in the passenger Entity change the attribute bookedTickets by using the attribute bookingPersonId.
        //And the end return the ticketId that has come from db
 
+
+        List<Integer>listOfPassengersIds=bookTicketEntryDto.getPassengerIds();
+        int BookingPersonId=bookTicketEntryDto.getBookingPersonId();
+        int trainId=bookTicketEntryDto.getTrainId();
+        String fromstation=bookTicketEntryDto.getFromStation().toString();
+        String tostation=bookTicketEntryDto.getToStation().toString();
+        int seats=bookTicketEntryDto.getNoOfSeats();
+        List<Ticket>list=ticketRepository.findAll();
+        int count=0;
+        for(Ticket ticket:list){
+
+        }
+
+
        return null;
 
     }

@@ -7,15 +7,11 @@ import java.util.List;
 
 public class AddTrainEntryDto {
 
-    private List<Station> stationRoute; //The items in the list denote the  order in which the train will move
+    private List<Station> stationRoute; //The items in the list denote the order in which the train will move
 
     private LocalTime departureTime;
 
     private int noOfSeats;
-
-    public List<Station> getStationRoute() {
-        return stationRoute;
-    }
 
     public AddTrainEntryDto(List<Station> stationRoute, LocalTime departureTime, int noOfSeats) {
         this.stationRoute = stationRoute;
@@ -24,6 +20,10 @@ public class AddTrainEntryDto {
     }
 
     public AddTrainEntryDto() {
+    }
+
+    public List<Station> getStationRoute() {
+        return stationRoute;
     }
 
     public void setStationRoute(List<Station> stationRoute) {
