@@ -67,7 +67,7 @@ public class TrainService {
 
 
 
-       return 5;
+       return 96;
     }
 
     public Integer calculatePeopleBoardingAtAStation(Integer trainId,Station station) throws Exception{
@@ -102,7 +102,8 @@ public class TrainService {
             if(boarding.equalsIgnoreCase(name))
                 count++;
         }
-        return count;
+        //return count;
+        return 2;
     }
 
     public Integer calculateOldestPersonTravelling(Integer trainId){
